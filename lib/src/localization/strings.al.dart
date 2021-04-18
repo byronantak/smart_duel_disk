@@ -73,6 +73,13 @@ class Strings {
     },
   );
 
+  static const homeTabSettings = PlainLocalizedString(
+    key: 'home_tab_settings',
+    values: {
+      'en': '''Settings''',
+    },
+  );
+
   static const generalErrorTryAgain = PlainLocalizedString(
     key: 'general_error_try_again',
     values: {

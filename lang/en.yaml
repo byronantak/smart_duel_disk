@@ -8,6 +8,7 @@
 home_tab_news: News
 home_tab_duel: Duel
 home_tab_deck: Deck
+home_tab_settings: Settings
 general_error_try_again: Try again
 news_general_error_description: The latest news could not be loaded. Please check your internet connection and try again.
 deck_builder_general_error_description: An error occurred while fetching the cards. Please check your internet connection and try again.
