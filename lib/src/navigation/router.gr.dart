@@ -14,9 +14,11 @@ import '../../packages/features/feature_draw_card/lib/feature_draw_card.dart'
     as _i5;
 import '../../packages/features/feature_speed_duel/lib/feature_speed_duel.dart'
     as _i6;
-import '../../packages/core/core_data_manager/core_data_manager_interface/lib/core_data_manager_interface.dart'
+import '../../packages/features/feature_settings/lib/src/widgets/settings_screen_provider.dart'
     as _i7;
-import 'package:flutter/material.dart' as _i8;
+import '../../packages/core/core_data_manager/core_data_manager_interface/lib/core_data_manager_interface.dart'
+    as _i8;
+import 'package:flutter/material.dart' as _i9;
 
 class AppRouter extends _i1.RootStackRouter {
   AppRouter();
@@ -63,6 +65,10 @@ class AppRouter extends _i1.RootStackRouter {
     },
     DeckTab.name: (entry) {
       return _i1.AdaptivePage(entry: entry, child: _i2.DeckScreenProvider());
+    },
+    SettingsTab.name: (entry) {
+      return _i1.AdaptivePage(
+          entry: entry, child: _i7.SettingsScreenProvider());
     }
   };
 
@@ -81,7 +87,10 @@ class AppRouter extends _i1.RootStackRouter {
                   routeBuilder: (match) => NewsTab.fromMatch(match)),
               _i1.RouteConfig<DeckTab>(DeckTab.name,
                   path: 'deck-screen-provider',
-                  routeBuilder: (match) => DeckTab.fromMatch(match))
+                  routeBuilder: (match) => DeckTab.fromMatch(match)),
+              _i1.RouteConfig<SettingsTab>(SettingsTab.name,
+                  path: 'settings-screen-provider',
+                  routeBuilder: (match) => SettingsTab.fromMatch(match))
             ]),
         _i1.RouteConfig<DeckBuilderRoute>(DeckBuilderRoute.name,
             path: '/deck-builder-screen-provider',
@@ -115,14 +124,14 @@ class DeckBuilderRoute extends _i1.PageRouteInfo {
       : preBuiltDeck = null,
         super.fromMatch(match);
 
-  final _i7.PreBuiltDeck preBuiltDeck;
+  final _i8.PreBuiltDeck preBuiltDeck;
 
   static const String name = 'DeckBuilderRoute';
 }
 
 class YugiohCardDetailRoute extends _i1.PageRouteInfo {
   YugiohCardDetailRoute(
-      {@_i8.required this.yugiohCard, @_i8.required this.index})
+      {@_i9.required this.yugiohCard, @_i9.required this.index})
       : super(name, path: '/yugioh-card-detail-screen-provider');
 
   YugiohCardDetailRoute.fromMatch(_i1.RouteMatch match)
@@ -130,7 +139,7 @@ class YugiohCardDetailRoute extends _i1.PageRouteInfo {
         index = null,
         super.fromMatch(match);
 
-  final _i7.YugiohCard yugiohCard;
+  final _i8.YugiohCard yugiohCard;
 
   final int index;
 
@@ -138,7 +147,7 @@ class YugiohCardDetailRoute extends _i1.PageRouteInfo {
 }
 
 class DrawCardRoute extends _i1.PageRouteInfo {
-  DrawCardRoute({@_i8.required this.cardDrawnCallback})
+  DrawCardRoute({@_i9.required this.cardDrawnCallback})
       : super(name, path: '/draw-card-screen-provider');
 
   DrawCardRoute.fromMatch(_i1.RouteMatch match)
@@ -151,14 +160,14 @@ class DrawCardRoute extends _i1.PageRouteInfo {
 }
 
 class SpeedDuelRoute extends _i1.PageRouteInfo {
-  SpeedDuelRoute({@_i8.required this.preBuiltDeck})
+  SpeedDuelRoute({@_i9.required this.preBuiltDeck})
       : super(name, path: '/speed-duel-screen-provider');
 
   SpeedDuelRoute.fromMatch(_i1.RouteMatch match)
       : preBuiltDeck = null,
         super.fromMatch(match);
 
-  final _i7.PreBuiltDeck preBuiltDeck;
+  final _i8.PreBuiltDeck preBuiltDeck;
 
   static const String name = 'SpeedDuelRoute';
 }
@@ -185,4 +194,12 @@ class DeckTab extends _i1.PageRouteInfo {
   DeckTab.fromMatch(_i1.RouteMatch match) : super.fromMatch(match);
 
   static const String name = 'DeckTab';
+}
+
+class SettingsTab extends _i1.PageRouteInfo {
+  const SettingsTab() : super(name, path: 'settings-screen-provider');
+
+  SettingsTab.fromMatch(_i1.RouteMatch match) : super.fromMatch(match);
+
+  static const String name = 'SettingsTab';
 }

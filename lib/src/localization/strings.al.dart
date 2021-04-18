@@ -166,6 +166,13 @@ class Strings {
     },
   );
 
+  static const settingsEnablePlaymat = PlainLocalizedString(
+    key: 'settings_enable_playmat',
+    values: {
+      'en': '''Enable Playmat (Experimental)''',
+    },
+  );
+
   static const speedDuelCardActionSummon = PlainLocalizedString(
     key: 'speed_duel_card_action_summon',
     values: {

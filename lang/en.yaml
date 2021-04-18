@@ -21,6 +21,7 @@ deck_pre_built_kaiba_title: Kaiba's Deck
 feature_not_available_yet_description: '{1} is not available yet'
 deck_personal_create_deck: Create a deck
 deck_personal_search_card: Search a card
+settings_enable_playmat: Enable Playmat (Experimental)
 speed_duel_card_action_summon: Summon
 speed_duel_card_action_activate: Activate
 speed_duel_card_action_to_attack: To ATK

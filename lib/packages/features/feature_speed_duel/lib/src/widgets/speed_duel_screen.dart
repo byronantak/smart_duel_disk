@@ -1,9 +1,12 @@
 import 'dart:async';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:smart_duel_disk/packages/features/feature_settings/lib/src/constants/setting-keys.dart';
 import 'package:smart_duel_disk/packages/features/feature_speed_duel/lib/src/models/player_state.dart';
 import 'package:smart_duel_disk/packages/features/feature_speed_duel/lib/src/models/speed_duel_screen_event.dart';
 import 'package:smart_duel_disk/packages/features/feature_speed_duel/lib/src/models/speed_duel_state.dart';
@@ -121,24 +124,31 @@ class _SpeedDuelScreenState extends State<SpeedDuelScreen> {
 class _Body extends StatelessWidget {
   const _Body();
 
-  @override
-  Widget build(BuildContext context) {
-    final assetsProvider = Provider.of<AssetsProvider>(context);
+  List<Widget> buildPlaymatWidget(BuildContext context, bool playMatEnabled) {
+    if (!playMatEnabled) {
+      return [];
+    }
 
+    final assetsProvider = Provider.of<AssetsProvider>(context);
+    return [
+      Positioned.fill(
+        child: ImageAssetProvider(
+          assetName: assetsProvider.speedDuelFieldBackground,
+          fit: BoxFit.fill,
+        ),
+      ),
+      Positioned.fill(
+        child: Container(
+          color: Colors.black.withOpacity(0.79),
+        ),
+      )
+    ];
+  }
+
+  Widget buildPlayMat({ @required BuildContext context, @required bool playMatEnabled }) {
     return Stack(
       children: [
-        // TODO: add playmat support
-        // Positioned.fill(
-        //   child: ImageAssetProvider(
-        //     assetName: assetsProvider.speedDuelFieldBackground,
-        //     fit: BoxFit.fill,
-        //   ),
-        // ),
-        // Positioned.fill(
-        //   child: Container(
-        //     color: Colors.black.withOpacity(0.79),
-        //   ),
-        // ),
+        ...buildPlaymatWidget(context, playMatEnabled),
         const SafeArea(
           child: Center(
             child: Padding(
@@ -149,6 +159,20 @@ class _Body extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+        future: SharedPreferences.getInstance(),
+        builder: (context, AsyncSnapshot<SharedPreferences> snapshot) {
+          if (snapshot.hasData) {
+            final playMatEnabled = snapshot.data.getBool(settingEnabledPlayMatKey);
+            return buildPlayMat(context: context, playMatEnabled: playMatEnabled);
+          }
+
+          return buildPlayMat(context: context, playMatEnabled: false);
+        });
   }
 }
 

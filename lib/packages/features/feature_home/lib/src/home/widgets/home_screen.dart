@@ -10,7 +10,7 @@ class HomeScreen extends StatelessWidget {
     HomeTab(title: Strings.homeTabNews.get(), icon: Icons.wysiwyg_outlined, page: const NewsTab()),
     HomeTab(title: Strings.homeTabDeck.get(), icon: Icons.account_balance_wallet_outlined, page: const DeckTab()),
     HomeTab(title: Strings.homeTabDuel.get(), icon: Icons.sports_esports, page: const DuelTab()),
-    HomeTab(title: Strings.homeTabSettings.get(), icon: Icons.settings, page: const DuelTab()),
+    HomeTab(title: Strings.homeTabSettings.get(), icon: Icons.settings, page: const SettingsTab()),
   ]);
 
   const HomeScreen();
