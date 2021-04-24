@@ -8,6 +8,7 @@ import 'package:smart_duel_disk/packages/core/core_logger/core_logger_interface/
 import 'package:smart_duel_disk/packages/core/core_messaging/core_messaging_interface/lib/src/snack_bar/snack_bar_service.dart';
 import 'package:smart_duel_disk/packages/core/core_navigation/lib/core_navigation.dart';
 import 'package:smart_duel_disk/packages/core/core_smart_duel_server/core_smart_duel_server_interface/lib/core_smart_duel_server_interface.dart';
+import 'package:smart_duel_disk/packages/core/core_user_settings/core_user_settings_interface/lib/core_user_settings_interface.dart';
 import 'package:smart_duel_disk/packages/features/feature_speed_duel/lib/src/models/card_position.dart';
 import 'package:smart_duel_disk/packages/features/feature_speed_duel/lib/src/models/play_card.dart';
 import 'package:smart_duel_disk/packages/features/feature_speed_duel/lib/src/models/player_state.dart';
@@ -39,6 +40,7 @@ class SpeedDuelViewModel extends BaseViewModel {
   final EnumHelper _enumHelper;
   final CrashlyticsProvider _crashlyticsProvider;
   final SnackBarService _snackBarService;
+  final UserSettingsDataManager _userSettingsDataManager;
 
   final _playerState = BehaviorSubject<PlayerState>.seeded(const PlayerState());
 
@@ -47,6 +49,8 @@ class SpeedDuelViewModel extends BaseViewModel {
 
   final _speedDuelScreenEvent = BehaviorSubject<SpeedDuelScreenEvent>();
   Stream<SpeedDuelScreenEvent> get speedDuelScreenEvent => _speedDuelScreenEvent.stream;
+
+  UserSettings get userSettings => _userSettingsDataManager.getUserSettings();
 
   bool _initialized = false;
   StreamSubscription<PlayerState> _playerStateSubscription;
@@ -65,6 +69,7 @@ class SpeedDuelViewModel extends BaseViewModel {
     this._enumHelper,
     this._crashlyticsProvider,
     this._snackBarService,
+    this._userSettingsDataManager,
   ) : super(logger);
 
   //region Lifecycle

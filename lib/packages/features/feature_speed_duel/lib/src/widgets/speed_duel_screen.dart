@@ -5,8 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:smart_duel_disk/packages/features/feature_settings/lib/src/constants/setting-keys.dart';
 import 'package:smart_duel_disk/packages/features/feature_speed_duel/lib/src/models/player_state.dart';
 import 'package:smart_duel_disk/packages/features/feature_speed_duel/lib/src/models/speed_duel_screen_event.dart';
 import 'package:smart_duel_disk/packages/features/feature_speed_duel/lib/src/models/speed_duel_state.dart';
@@ -146,33 +144,27 @@ class _Body extends StatelessWidget {
   }
 
   Widget buildPlayMat({ @required BuildContext context, @required bool playMatEnabled }) {
-    return Stack(
-      children: [
-        ...buildPlaymatWidget(context, playMatEnabled),
-        const SafeArea(
-          child: Center(
-            child: Padding(
-              padding: EdgeInsets.all(AppDimensions.screenMargin),
-              child: _SpeedDuelFieldBuilder(),
+    return SizedBox(
+      child: Stack(
+          children: [
+            ...buildPlaymatWidget(context, playMatEnabled),
+            const SafeArea(
+              child: Center(
+                child: Padding(
+                  padding: EdgeInsets.all(AppDimensions.screenMargin),
+                  child: _SpeedDuelFieldBuilder(),
+                ),
+              ),
             ),
-          ),
-        ),
-      ],
+          ],
+        )
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-        future: SharedPreferences.getInstance(),
-        builder: (context, AsyncSnapshot<SharedPreferences> snapshot) {
-          if (snapshot.hasData) {
-            final playMatEnabled = snapshot.data.getBool(settingEnabledPlayMatKey);
-            return buildPlayMat(context: context, playMatEnabled: playMatEnabled);
-          }
-
-          return buildPlayMat(context: context, playMatEnabled: false);
-        });
+    final vm = Provider.of<SpeedDuelViewModel>(context);
+    return buildPlayMat(context: context, playMatEnabled: vm.userSettings.enablePlayMat);
   }
 }
 
