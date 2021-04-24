@@ -6,23 +6,19 @@ import 'package:smart_duel_disk/src/di/di.dart';
 
 import '../../feature_settings.dart';
 
-
 class SettingsScreenProvider extends StatelessWidget {
   const SettingsScreenProvider();
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        Provider<UserSettingsDataManager>(
-          create: (_) => di.get<UserSettingsDataManager>(),
-        ),
-        Provider<SettingsViewModel>(
-          create: (_) => di.get<SettingsViewModel>(),
-          dispose: (_, vm) => vm.dispose(),
-        ),
-      ],
-      child: SettingsScreen()
-    );
+    return MultiProvider(providers: [
+      Provider<UserSettingsDataManager>(
+        create: (_) => di.get<UserSettingsDataManager>(),
+      ),
+      Provider<SettingsViewModel>(
+        create: (_) => di.get<SettingsViewModel>(),
+        dispose: (_, vm) => vm.dispose(),
+      ),
+    ], child: SettingsScreen());
   }
 }

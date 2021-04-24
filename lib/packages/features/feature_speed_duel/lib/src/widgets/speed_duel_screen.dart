@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -122,42 +123,21 @@ class _SpeedDuelScreenState extends State<SpeedDuelScreen> {
 class _Body extends StatelessWidget {
   const _Body();
 
-  List<Widget> buildPlaymatWidget(BuildContext context, bool playMatEnabled) {
-    if (!playMatEnabled) {
-      return [];
-    }
-
-    final assetsProvider = Provider.of<AssetsProvider>(context);
-    return [
-      Positioned.fill(
-        child: ImageAssetProvider(
-          assetName: assetsProvider.speedDuelFieldBackground,
-          fit: BoxFit.fill,
-        ),
-      ),
-      Positioned.fill(
-        child: Container(
-          color: Colors.black.withOpacity(0.79),
-        ),
-      )
-    ];
-  }
-
   Widget buildPlayMat({ @required BuildContext context, @required bool playMatEnabled }) {
     return SizedBox(
       child: Stack(
-          children: [
-            ...buildPlaymatWidget(context, playMatEnabled),
-            const SafeArea(
-              child: Center(
-                child: Padding(
-                  padding: EdgeInsets.all(AppDimensions.screenMargin),
-                  child: _SpeedDuelFieldBuilder(),
-                ),
+        children: [
+          _PlayMatBackground(isPlayMatEnabled: playMatEnabled),
+          const SafeArea(
+            child: Center(
+              child: Padding(
+                padding: EdgeInsets.all(AppDimensions.screenMargin),
+                child: _SpeedDuelFieldBuilder(),
               ),
             ),
-          ],
-        )
+          ),
+        ],
+      ),
     );
   }
 
@@ -181,6 +161,36 @@ class _SpeedDuelFieldBuilder extends HookWidget {
       loading: () => const GeneralLoadingState(),
       error: () => const GeneralErrorState(description: 'An error occurred while starting the speed duel'),
     );
+  }
+}
+
+class _PlayMatBackground extends StatelessWidget {
+  final bool isPlayMatEnabled;
+
+  const _PlayMatBackground({
+    @required this.isPlayMatEnabled,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final assetsProvider = Provider.of<AssetsProvider>(context);
+    if (!isPlayMatEnabled) {
+      return const SizedBox.shrink();
+    }
+
+    return Stack(children: [
+      Positioned.fill(
+        child: ImageAssetProvider(
+          assetName: assetsProvider.speedDuelFieldBackground,
+          fit: BoxFit.fill,
+        ),
+      ),
+      Positioned.fill(
+        child: Container(
+          color: Colors.black.withOpacity(0.79),
+        ),
+      )
+    ]);
   }
 }
 
