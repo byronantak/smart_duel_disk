@@ -1,10 +1,9 @@
-import 'package:smart_duel_disk/packages/core/core_user_settings/core_user_settings_interface/lib/core_user_settings_interface.dart';
-import 'package:smart_duel_disk/packages/ui_components/lib/ui_components.dart';
-import 'package:smart_duel_disk/src/localization/strings.al.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:smart_duel_disk/packages/features/feature_settings/lib/src/settings_viewmodel.dart';
 import 'package:smart_duel_disk/packages/ui_components/lib/src/widgets/state/general_loading_state.dart';
+import 'package:smart_duel_disk/packages/ui_components/lib/ui_components.dart';
+import 'package:smart_duel_disk/src/localization/strings.al.dart';
 
 class SettingsScreen extends StatelessWidget {
   @override
@@ -28,9 +27,9 @@ class SettingsScreen extends StatelessWidget {
                         children: [
                           Text(Strings.settingsEnablePlaymat.get()),
                           Switch(
-                              value: snapshot.data.enablePlayMat,
+                              value: snapshot.data.isPlayMatEnabled,
                               onChanged: (bool value) {
-                                vm.setEnablePlayMat(value: value);
+                                vm.savePlaymatEnabled(value: value);
                               })
                         ])
                   ])));

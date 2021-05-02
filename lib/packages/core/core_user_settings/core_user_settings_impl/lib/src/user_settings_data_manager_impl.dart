@@ -9,12 +9,12 @@ class UserSettingsDataManagerImpl implements UserSettingsDataManager {
   UserSettingsDataManagerImpl(this._userSettingsStorageProvider);
 
   @override
-  UserSettings getUserSettings() {
-    return _userSettingsStorageProvider.getUserSettings();
+  bool isPlaymatEnabled() {
+    return _userSettingsStorageProvider.isPlaymatEnabled();
   }
 
   @override
-  void saveUserSettings(UserSettings userSettings) {
-    _userSettingsStorageProvider.setUserSettings(userSettings);
+  void savePlaymatEnabled({bool value}) {
+    _userSettingsStorageProvider.savePlaymatEnabled(value: value);
   }
 }

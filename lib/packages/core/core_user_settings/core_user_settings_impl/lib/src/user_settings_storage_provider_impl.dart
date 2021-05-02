@@ -11,14 +11,12 @@ class UserSettingsStorageProviderImpl implements UserSettingsStorageProvider {
   UserSettingsStorageProviderImpl(this._sharedPreferencesProvider);
 
   @override
-  UserSettings getUserSettings() {
-    return UserSettings(
-        enablePlayMat: _sharedPreferencesProvider.getBool(_enablePlayMatKey));
+  bool isPlaymatEnabled() {
+    return _sharedPreferencesProvider.getBool(_enablePlayMatKey);
   }
 
   @override
-  void setUserSettings(UserSettings userSettings) {
-    _sharedPreferencesProvider.setBool(_enablePlayMatKey,
-        value: userSettings.enablePlayMat);
+  void savePlaymatEnabled({bool value}) {
+    _sharedPreferencesProvider.setBool(_enablePlayMatKey, value: value);
   }
 }

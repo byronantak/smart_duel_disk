@@ -144,7 +144,7 @@ class _Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final vm = Provider.of<SpeedDuelViewModel>(context);
-    return buildPlayMat(context: context, playMatEnabled: vm.userSettings.enablePlayMat);
+    return buildPlayMat(context: context, playMatEnabled: vm.isPlaymatEnabled);
   }
 }
 
