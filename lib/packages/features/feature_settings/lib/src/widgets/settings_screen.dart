@@ -11,16 +11,18 @@ class SettingsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final vm = Provider.of<SettingsViewModel>(context);
 
-    return StreamBuilder(
+    return StreamBuilder<UserSettings>(
         stream: vm.refreshSettings,
-        builder: (BuildContext context, AsyncSnapshot<UserSettings> snapshot) {
-          if (snapshot.hasData) {
-            return SingleChildScrollView(
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(AppDimensions.screenMargin),
-                    child: Row(
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return const GeneralLoadingState();
+          }
+
+          return SingleChildScrollView(
+              child: Padding(
+                  padding: const EdgeInsets.all(AppDimensions.screenMargin),
+                  child: Column(children: [
+                    Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         textBaseline: TextBaseline.alphabetic,
                         children: [
@@ -29,15 +31,9 @@ class SettingsScreen extends StatelessWidget {
                               value: snapshot.data.enablePlayMat,
                               onChanged: (bool value) {
                                 vm.setEnablePlayMat(value: value);
-                              }),
-                        ]),
-                  ),
-                ],
-              ),
-            );
-          }
-
-          return const GeneralLoadingState();
+                              })
+                        ])
+                  ])));
         });
   }
 }

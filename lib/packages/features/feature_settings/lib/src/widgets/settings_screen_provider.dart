@@ -13,11 +13,11 @@ class SettingsScreenProvider extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(providers: [
       Provider<UserSettingsDataManager>(
-        create: (_) => di.get<UserSettingsDataManager>(),
+        create: (_) => di.get<UserSettingsDataManager>()
       ),
       Provider<SettingsViewModel>(
         create: (_) => di.get<SettingsViewModel>(),
-        dispose: (_, vm) => vm.dispose(),
+        dispose: (_, vm) => vm.dispose()
       ),
     ], child: SettingsScreen());
   }

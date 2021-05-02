@@ -6,17 +6,19 @@ import 'package:smart_duel_disk/packages/core/core_user_settings/core_user_setti
 @LazySingleton(as: UserSettingsStorageProvider)
 class UserSettingsStorageProviderImpl implements UserSettingsStorageProvider {
   final SharedPreferencesProvider _sharedPreferencesProvider;
-  final enablePlayMatKey = 'enabledPlayMat';
+  final _enablePlayMatKey = 'enabledPlayMat';
 
   UserSettingsStorageProviderImpl(this._sharedPreferencesProvider);
 
   @override
   UserSettings getUserSettings() {
-    return UserSettings(enablePlayMat: _sharedPreferencesProvider.getBool(enablePlayMatKey));
+    return UserSettings(
+        enablePlayMat: _sharedPreferencesProvider.getBool(_enablePlayMatKey));
   }
 
   @override
   void setUserSettings(UserSettings userSettings) {
-    _sharedPreferencesProvider.setBool(enablePlayMatKey, value: userSettings.enablePlayMat);
+    _sharedPreferencesProvider.setBool(_enablePlayMatKey,
+        value: userSettings.enablePlayMat);
   }
 }
