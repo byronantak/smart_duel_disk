@@ -122,12 +122,14 @@ class _SpeedDuelScreenState extends State<SpeedDuelScreen> {
 
 class _Body extends StatelessWidget {
   const _Body();
-
-  Widget buildPlayMat({ @required BuildContext context, @required bool playMatEnabled }) {
+  
+  @override
+  Widget build(BuildContext context) {
+    final vm = Provider.of<SpeedDuelViewModel>(context);
     return SizedBox(
       child: Stack(
         children: [
-          _PlayMatBackground(isPlayMatEnabled: playMatEnabled),
+          _PlayMatBackground(isPlayMatEnabled: vm.isPlayMatEnabled),
           const SafeArea(
             child: Center(
               child: Padding(
@@ -139,12 +141,6 @@ class _Body extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final vm = Provider.of<SpeedDuelViewModel>(context);
-    return buildPlayMat(context: context, playMatEnabled: vm.isPlaymatEnabled);
   }
 }
 

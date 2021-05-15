@@ -50,7 +50,7 @@ class SpeedDuelViewModel extends BaseViewModel {
   final _speedDuelScreenEvent = BehaviorSubject<SpeedDuelScreenEvent>();
   Stream<SpeedDuelScreenEvent> get speedDuelScreenEvent => _speedDuelScreenEvent.stream;
 
-  bool get isPlaymatEnabled => _userSettingsDataManager.isPlaymatEnabled();
+  bool get isPlayMatEnabled => _userSettingsDataManager.isPlayMatEnabled();
 
   bool _initialized = false;
   StreamSubscription<PlayerState> _playerStateSubscription;
