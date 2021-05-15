@@ -8,6 +8,7 @@
 
 ## Building the app
 
+1. Add a empty json file called `secrets.env` to `android`
 1. Getting a valid `google-services.json` file
     1. Create a [Firebase](https://console.firebase.google.com) project.
     1. Create an application with any name you desire. Ensure that the package name `com.crowncorp.smartdueldisk` so that it can be used to build the application.
@@ -21,7 +22,7 @@ An example implementation:
 
 ```dart
 Future<Iterable<int>> getPreBuiltDeckCardIds(PreBuiltDeck deck) async {
-    return [46986414, 32207100]
+    return [46986414, 32207100];
 }
 ```
 

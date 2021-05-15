@@ -122,7 +122,7 @@ class _SpeedDuelScreenState extends State<SpeedDuelScreen> {
 
 class _Body extends StatelessWidget {
   const _Body();
-  
+
   @override
   Widget build(BuildContext context) {
     final vm = Provider.of<SpeedDuelViewModel>(context);
