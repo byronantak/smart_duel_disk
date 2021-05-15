@@ -28,11 +28,11 @@ class SettingsScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         textBaseline: TextBaseline.alphabetic,
                         children: [
-                          Text(Strings.settingsEnablePlaymat.get()),
+                          Text(Strings.settingsEnablePlayMat.get()),
                           Switch(
                               value: snapshot.data.isPlayMatEnabled,
                               onChanged: (bool value) {
-                                vm.savePlaymatEnabled(value: value);
+                                vm.savePlayMatEnabled(value: value);
                               })
                         ])
                   ])));
