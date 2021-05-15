@@ -1,4 +1,6 @@
+import 'package:auto_route/auto_route.dart';
+
 abstract class UserSettingsDataManager {
-  bool isPlaymatEnabled();
-  void savePlaymatEnabled({ bool value });
+  bool isPlayMatEnabled();
+  void savePlayMatEnabled({@required bool value});
 }

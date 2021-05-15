@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:smart_duel_disk/packages/features/feature_settings/lib/src/models/user_settings.dart';
 import 'package:smart_duel_disk/packages/features/feature_settings/lib/src/settings_viewmodel.dart';
 import 'package:smart_duel_disk/packages/ui_components/lib/src/widgets/state/general_loading_state.dart';
 import 'package:smart_duel_disk/packages/ui_components/lib/ui_components.dart';
 import 'package:smart_duel_disk/src/localization/strings.al.dart';
 
 class SettingsScreen extends StatelessWidget {
+  const SettingsScreen();
+
   @override
   Widget build(BuildContext context) {
     final vm = Provider.of<SettingsViewModel>(context);

@@ -1,5 +1,6 @@
-abstract class UserSettingsStorageProvider {
-  bool isPlaymatEnabled();
+import 'package:auto_route/auto_route.dart';
 
-  void savePlaymatEnabled({bool value});
+abstract class UserSettingsStorageProvider {
+  bool isPlayMatEnabled();
+  void savePlayMatEnabled({@required bool value});
 }

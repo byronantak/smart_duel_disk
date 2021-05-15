@@ -166,7 +166,7 @@ class Strings {
     },
   );
 
-  static const settingsEnablePlaymat = PlainLocalizedString(
+  static const settingsEnablePlayMat = PlainLocalizedString(
     key: 'settings_enable_playmat',
     values: {
       'en': '''Enable Playmat (Experimental)''',

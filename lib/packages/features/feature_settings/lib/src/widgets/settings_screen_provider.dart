@@ -15,6 +15,6 @@ class SettingsScreenProvider extends StatelessWidget {
         create: (_) => di.get<SettingsViewModel>(),
         dispose: (_, vm) => vm.dispose()
       ),
-    ], child: SettingsScreen());
+    ], child: const SettingsScreen());
   }
 }
